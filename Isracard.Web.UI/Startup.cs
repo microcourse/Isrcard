@@ -1,8 +1,11 @@
 using System;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Isracard.Core.Services.Bookmark;
 using Isracard.Core.Services.Github;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -24,6 +27,10 @@ namespace Isracard.Web.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession();
+
 
             services.AddScoped<IGithubService, GithubService>();
             services.AddSingleton<IBookmarkService, BookmarkService>();
@@ -52,6 +59,21 @@ namespace Isracard.Web.UI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.Use(async (context, next) =>
+            {
+                var userId = context.Request.Cookies["x-user-id"];
+
+                if (string.IsNullOrWhiteSpace(userId))
+                {
+                    userId = Guid.NewGuid().ToString();
+                    context.Response.Cookies.Append("x-user-id", userId);
+                }
+
+                context.User = new GenericPrincipal(new GenericIdentity(userId), new string[0]);
+
+                await next.Invoke();
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -68,6 +90,11 @@ namespace Isracard.Web.UI
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+        }
+
+        private async Task SetPrincipal(HttpContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

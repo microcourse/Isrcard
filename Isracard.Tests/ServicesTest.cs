@@ -28,7 +28,7 @@ namespace Isracard.Tests
             IBookmarkService service = new BookmarkService();
             var item = new BookmarkContext()
             {
-                UserId = Guid.NewGuid().ToString(),
+               UserId = Guid.NewGuid().ToString(),
                Item = new RepositoryItem()
             };
 

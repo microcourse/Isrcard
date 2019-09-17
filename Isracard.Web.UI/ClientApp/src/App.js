@@ -12,7 +12,7 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Github} />
-        <Route path='/fetchdata' component={Bookmarks} />
+        <Route path='/bookmarks' component={Bookmarks} />
       </Layout>
     );
   }

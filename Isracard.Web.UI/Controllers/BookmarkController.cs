@@ -14,7 +14,7 @@ namespace Isracard.Web.UI.Controllers
     public class BookmarkController : Controller
     {
         private IBookmarkService bookmarkService;
-        private string UserId => this.HttpContext?.Session?.Id;
+        private string UserId => this.User.Identity.Name;
 
         public BookmarkController(IBookmarkService bookmarkService)
         {

@@ -23,7 +23,7 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='home' /> Github search
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
+                    <LinkContainer to={'/bookmarks'}>
               <NavItem>
                 <Glyphicon glyph='th-list' /> Bookmarks
               </NavItem>
