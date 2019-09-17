@@ -91,10 +91,5 @@ namespace Isracard.Web.UI
                 }
             });
         }
-
-        private async Task SetPrincipal(HttpContext context)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

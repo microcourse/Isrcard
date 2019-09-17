@@ -16,5 +16,23 @@ namespace Isracard.Core.Domain
         [JsonProperty("url")]
         public string Url { get; set; }
 
+
+        protected bool Equals(RepositoryItem other)
+        {
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((RepositoryItem) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }
