@@ -66,7 +66,10 @@ namespace Isracard.Web.UI
                 if (string.IsNullOrWhiteSpace(userId))
                 {
                     userId = Guid.NewGuid().ToString();
-                    context.Response.Cookies.Append("x-user-id", userId);
+                    context.Response.Cookies.Append("x-user-id", userId, new CookieOptions()
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddDays(7)
+                    });
                 }
 
                 context.User = new GenericPrincipal(new GenericIdentity(userId), new string[0]);

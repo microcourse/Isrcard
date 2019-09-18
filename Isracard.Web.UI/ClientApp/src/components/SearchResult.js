@@ -60,7 +60,7 @@ export class SearchResult extends Component {
         }
 
         return (
-            <button onClick={(e) => this.handleBookmark(item, e)}>
+            <button className="btn btn-info" onClick={(e) => this.handleBookmark(item, e)}>
                 Bookmark
             </button>
         );
