@@ -23,6 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\Bookmarks - Copy.js" />
+    <None Remove="ClientApp\src\components\Bookmarks - Copy.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Isracard.Core\Isracard.Core.csproj" />
   </ItemGroup>
 
