@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import {SearchResult} from "./SearchResult";
 import {BookmarkApi} from "../data/BookmarkApi";
 

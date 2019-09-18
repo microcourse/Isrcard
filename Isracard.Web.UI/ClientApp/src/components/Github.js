@@ -31,15 +31,6 @@ export class Github extends Component {
               this.setState({ loading: false });
               this.setState({ items: data.items });
           });
-
-      /*
-        axios.get('api/github/search/' + this.state.value)
-        .then(response => response.data)
-        .then(data => {
-          this.setState({ loading: false });
-          this.setState({ items: data.items });
-        });
-    */
   }
 
   render() {
